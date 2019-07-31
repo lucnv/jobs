@@ -1,4 +1,4 @@
-class DiscountRule < ActiveHash::Base
+class DiscountRule < BaseRecord
   self.data = [
     { rental_days: 1, discount_percent: 10 },
     { rental_days: 4, discount_percent: 30 },

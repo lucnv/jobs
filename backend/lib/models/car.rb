@@ -1,6 +1,4 @@
-class Car < ActiveHash::Base
-  include ActiveHash::Associations
-
+class Car < BaseRecord
   has_many :rentals
 
   field :id

@@ -13,7 +13,7 @@ discount_rules = DiscountRule.all.sort_by { |rule| - rule.rental_days }
 rental_result = Rental.all.map do |rental|
   price =  calculate_price rental, discount_rules: discount_rules
   commission = calculate_commission rental, price
-  actors_payment = calculate_payment_for_actors price, commission
+  actors_payment = calculate_payment_for_actors rental, price, commission
   { id: rental.id, actions: actors_payment }
 end
 
