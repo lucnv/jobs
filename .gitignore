@@ -8,6 +8,7 @@ backend/level2/data/output.json
 backend/level3/data/output.json
 backend/level4/data/output.json
 backend/level5/data/output.json
+backend/**/.byebug_history
 frontend/node_modules
 frontend/dist
 frontend/.cache
