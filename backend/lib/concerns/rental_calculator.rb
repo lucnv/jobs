@@ -24,6 +24,36 @@ module RentalCalculator
     }
   end
 
+  def calculate_payment_for_actors price, commission
+    [
+      {
+        who: :driver,
+        type: :debit,
+        amount: price
+      },
+      {
+        who: :owner,
+        type: :credit,
+        amount: price - commission[:insurance_fee] - commission[:assistance_fee] - commission[:drivy_fee]
+      },
+      {
+        who: :insurance,
+        type: :credit,
+        amount: commission[:insurance_fee]
+      },
+      {
+        who: :assistance,
+        type: :credit,
+        amount: commission[:assistance_fee]
+      },
+      {
+        who: :drivy,
+        type: :credit,
+        amount: commission[:drivy_fee]
+      }
+    ]
+  end
+
   private
   def rental_days_count rental
     (Date.parse(rental.end_date) - Date.parse(rental.start_date)).to_i + 1
