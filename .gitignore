@@ -12,3 +12,5 @@ backend/**/.byebug_history
 frontend/node_modules
 frontend/dist
 frontend/.cache
+.DS_Store
+backend/**/.DS_Store
