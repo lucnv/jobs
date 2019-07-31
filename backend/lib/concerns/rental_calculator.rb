@@ -1,4 +1,10 @@
 module RentalCalculator
+  COMMISSION = {
+    percent_on_price: 30,
+    insurance_percent: 50,
+    roadside_assistance: 100
+  }
+
   def calculate_price rental, discount_rules: []
     if discount_rules.present?
       calculate_price_with_discount_rules rental, discount_rules
@@ -7,6 +13,18 @@ module RentalCalculator
     end
   end
 
+  def calculate_commission rental, price
+    total_commission = price * COMMISSION[:percent_on_price] / 100
+    insurance_fee = total_commission * COMMISSION[:insurance_percent] / 100
+    assistance_fee = rental_days_count(rental) * COMMISSION[:roadside_assistance]
+    {
+      insurance_fee: insurance_fee,
+      assistance_fee: assistance_fee,
+      drivy_fee: total_commission - insurance_fee - assistance_fee
+    }
+  end
+
+  private
   def rental_days_count rental
     (Date.parse(rental.end_date) - Date.parse(rental.start_date)).to_i + 1
   end
